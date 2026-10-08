@@ -5,7 +5,7 @@
 ### Floating islands and real window glass for VS Code.
 
 Rounded islands · native macOS / Windows 11 blur · Darcula Contrast theme · C/C++ highlighting via clangd.
-No third-party tools — just one extension and an install script.
+No third-party tools – just one extension and an install script.
 <br/>
 
 
@@ -16,25 +16,25 @@ No third-party tools — just one extension and an install script.
 <br>
 
 <br/>
-<img src="tools/image_2026-10-08_20-05-43.png" width="80%" alt="Flying Island — preview" />
+<img src="tools/image_2026-10-08_20-05-43.png" width="80%" alt="Flying Island – preview" />
 <br/>
 <sub>Rounded islands · glass in the gaps · solid panels over the blur (Windows)</sub>
 <br/><br/>
 <br/>
-<img src="tools/tg_image_1389179090.png" width="80%" alt="Flying Island — preview" />
+<img src="tools/tg_image_1389179090.png" width="80%" alt="Flying Island – preview" />
 <br/>
 <sub>Rounded islands · glass in the gaps · solid panels over the blur (macOS)</sub>
 <br/><br/>
 
 **One-line install**
 
-🪟 Windows — paste into PowerShell:
+🪟 Windows – paste into PowerShell:
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.ps1 | iex
 ```
 
-🍎 macOS — paste into Terminal:
+🍎 macOS – paste into Terminal:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.sh | bash
@@ -101,21 +101,21 @@ curl -fsSL https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-
 
 ## ⚡ Quick start
 
-**Option A — one line (recommended).**
+**Option A – one line (recommended).**
 
-Windows — in PowerShell:
+Windows – in PowerShell:
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.ps1 | iex
 ```
 
-macOS — in Terminal:
+macOS – in Terminal:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.sh | bash
 ```
 
-**Option B — from a downloaded copy.** Download the repo (**Code → Download ZIP**), unpack it and run from that folder:
+**Option B – from a downloaded copy.** Download the repo (**Code → Download ZIP**), unpack it and run from that folder:
 
 ```powershell
 # Windows (PowerShell)
@@ -174,7 +174,7 @@ Everything lives under **Flying Island** in the VS Code settings. After a change
 <details>
 <summary><b>Your own colors on top of the theme</b></summary>
 
-No rebuild needed — the standard VS Code settings work on top of the theme:
+No rebuild needed – the standard VS Code settings work on top of the theme:
 
 ```jsonc
 "workbench.colorCustomizations": {
@@ -217,7 +217,7 @@ The glass material is stored in `~/.flying-island/vibrancy.json`, so switching i
 |---|---|---|
 | **VS Code** | User Installer (in `%LOCALAPPDATA%\Programs`) | in `/Applications` |
 | **Glass** | Windows 11 22H2+, transparency effects on | "Reduce transparency" off |
-| **To install** | nothing — just PowerShell | Xcode Command Line Tools (`xcode-select --install`) |
+| **To install** | nothing – just PowerShell | Xcode Command Line Tools (`xcode-select --install`) |
 | **For C/C++** | a compiler (LLVM, MinGW or MSVC) | clangd from the Command Line Tools |
 
 On Windows 10 the islands work; the window just stays solid.
@@ -230,7 +230,7 @@ On Windows 10 the islands work; the window just stays solid.
 <summary>No islands or rounded corners</summary>
 
 - **Windows:** VS Code was installed with the System Installer into `Program Files`, where the extension can't write. Reinstall VS Code with the **User Installer**.
-- **macOS:** VS Code runs from Downloads. macOS launches it from a read-only copy — drag VS Code into `/Applications`.
+- **macOS:** VS Code runs from Downloads. macOS launches it from a read-only copy – drag VS Code into `/Applications`.
 - Run **Flying Island: Apply** and check for an error message.
 
 </details>
@@ -238,7 +238,7 @@ On Windows 10 the islands work; the window just stays solid.
 <details>
 <summary>VS Code says "Your Code installation appears to be corrupt"</summary>
 
-That's how VS Code reacts to any change to its own files — it's expected. Hide the notification with the gear button.
+That's how VS Code reacts to any change to its own files – it's expected. Hide the notification with the gear button.
 
 </details>
 
@@ -248,14 +248,14 @@ That's how VS Code reacts to any change to its own files — it's expected. Hide
 - **Windows:** turn on "Settings → Personalization → Colors → Transparency effects".
 - **macOS:** turn off "Accessibility → Display → Reduce transparency".
 - After changing the material, **fully quit** VS Code and open it again.
-- Tools like MicaForEveryone conflict with the extension — add `Code.exe` to their exclusions.
+- Tools like MicaForEveryone conflict with the extension – add `Code.exe` to their exclusions.
 
 </details>
 
 <details>
 <summary>Everything is gone after a VS Code update</summary>
 
-An update replaces VS Code's files. The extension re-applies the patch on the next start and offers to reload the window — just click the button in the notification.
+An update replaces VS Code's files. The extension re-applies the patch on the next start and offers to reload the window – just click the button in the notification.
 
 </details>
 
@@ -286,7 +286,7 @@ cp ~/Library/Application\ Support/Code/User/settings.json.bak-islands ~/Library/
 code --uninstall-extension yaroslav.flying-island
 ```
 
-Fonts, clangd and the icon pack stay installed — remove them separately if you like.
+Fonts, clangd and the icon pack stay installed – remove them separately if you like.
 
 ---
 
@@ -317,7 +317,7 @@ Project code is **MIT** (`LICENSE`). Theme colors are derived from [IntelliJ Com
 
 <div align="center">
 
-**Flying Island** — made with 🩵 by **am1dreaming**
+**Flying Island** – made with 🩵 by **am1dreaming**
 
 <sub>MIT License · not affiliated with or endorsed by JetBrains or Microsoft</sub>
 
