@@ -22,10 +22,18 @@
 <sub>Острова со скруглёнными углами · стекло в зазорах · сплошные панели поверх размытия.</sub>
 <br/><br/>
 
-**Установка в одну строку — вставь в PowerShell:**
+**Установка в одну строку.**
+
+🪟 Windows — вставь в PowerShell:
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.ps1 | iex
+```
+
+🍎 macOS — вставь в Терминал:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.sh | bash
 ```
 
 <sub>
