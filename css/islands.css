@@ -1,33 +1,19 @@
-/*
- * Flying Island — window geometry for VS Code.
- * Inlined into VS Code's workbench.html by extension.js.
- *
- * Default numbers come from the IntelliJ Platform ManyIslandsDark.theme.json:
- *   Island.borderWidth = 4  -> 4px gap between islands
- *   Island.arc         = 20 -> 10px corner radius
- *
- * VS Code lays parts out with absolute pixel sizes, so islands are cut out
- * with clip-path instead of margins: layout math stays intact and the window
- * background shows through the clipped edges as the gap.
- *
- * Geometry defaults below; extension.js overrides them from the
- * flyingIsland.gap / .radius / .margin.* settings.
- */
+
 
 :root {
-  --isl-gap: 4px;      /* between neighbouring islands */
-  --isl-half: 2px;     /* half of the gap, cut from each side of a shared edge */
+  --isl-gap: 4px; /* between neighbouring islands */
+  --isl-half: 2px; /* half of the gap, cut from each side of a shared edge */
   --isl-radius: 10px;
-  --isl-top: 0px;      /* below the title bar */
-  --isl-right: 7px;    /* right window edge: a touch wider than the gaps */
-  --isl-bottom: 4px;   /* above the status bar */
-  --isl-left: 0px;     /* next to the tool window stripe (activity bar) */
+  --isl-top: 0px; /* below the title bar */
+  --isl-right: 7px; /* right window edge: a touch wider than the gaps */
+  --isl-bottom: 4px; /* above the status bar */
+  --isl-left: 0px; /* next to the tool window stripe (activity bar) */
   --isl-window: #26282B;
   --isl-tab-bg: #25324D;
   --isl-tab-border: #35538F;
 }
 
-/* ------------------------------------------------------------- UI font */
+/* UI font */
 /* CLion New UI uses Inter 13 for all chrome. */
 .monaco-workbench,
 .monaco-workbench .monaco-list,
@@ -35,13 +21,13 @@
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 }
 
-/* ---------------------------------------------------------- window base */
+/* window base */
 .monaco-workbench,
 .monaco-workbench .part.editor > .content {
   background-color: var(--isl-window) !important;
 }
 
-/* ------------------------------------------------------------ islands */
+/* islands */
 /* Each island sets how much is cut from each of its sides (--in-t/r/b/l);
    one clip-path rule below cuts it out, and the content near the edges
    (tabs, titles, tree rows) is shifted in by the same amount further down,
@@ -131,7 +117,7 @@
   background: transparent;
 }
 
-/* ------------------------------------------------------- editor tabs */
+/* editor tabs */
 /* Inactive tabs sit flat on the tab strip; the active one is a rounded pill
    with a Blue3 outline (IslandsTabPainter: underlinedTabBackground=Blue1,
    underlinedBorderColor=Blue3). */
@@ -174,7 +160,7 @@
   font-size: 13px;
 }
 
-/* ------------------------------------------------ tool window headers */
+/* tool window headers */
 .monaco-workbench .part.sidebar > .title,
 .monaco-workbench .part.panel > .title,
 .monaco-workbench .part.auxiliarybar > .title {
@@ -209,7 +195,7 @@
   font-weight: 600 !important;
 }
 
-/* ------------------------------------------------------ project tree */
+/* project tree */
 /* Rounded row selection with side insets (List.border = 4,0,4,0). */
 .monaco-workbench .part.sidebar .monaco-list .monaco-list-row,
 .monaco-workbench .part.auxiliarybar .monaco-list .monaco-list-row,
@@ -219,7 +205,7 @@
   width: calc(100% - 12px - var(--in-l) - max(0px, calc(var(--in-r) - 2px))) !important;
 }
 
-/* -------------------------------------------------- activity bar (stripe) */
+/* activity bar (stripe) */
 /* VS Code sizes and centers the 48x48 items itself — never touch their box.
    The CLion stripe button (36x36, radius 6) is a pseudo-layer under the icon. */
 .monaco-workbench .activitybar > .content .monaco-action-bar .action-item {
@@ -251,7 +237,7 @@
   display: none !important;
 }
 
-/* --------------------------------------------------------- popups */
+/* popups */
 .monaco-workbench .quick-input-widget,
 .monaco-editor .suggest-widget,
 .monaco-editor .monaco-hover,
@@ -268,12 +254,12 @@
   border-radius: 4px;
 }
 
-/* ---------------------------------------------------- command center */
+/* command center */
 .monaco-workbench .part.titlebar .command-center .command-center-center {
   border-radius: 6px !important;
 }
 
-/* -------------------------------------------------------- status bar */
+/* status bar */
 .monaco-workbench .part.statusbar > .items-container > .statusbar-item > :first-child {
   border-radius: 4px;
   margin: 0 1px;
