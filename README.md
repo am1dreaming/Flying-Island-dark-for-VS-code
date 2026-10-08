@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏝️ Flying Island
+# 🏝️ Flying Island theme for VS code
 
 ### Floating islands and real window glass for VS Code.
 
