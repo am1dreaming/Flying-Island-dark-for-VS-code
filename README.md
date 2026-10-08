@@ -22,10 +22,10 @@
 <sub>Острова со скруглёнными углами · стекло в зазорах · сплошные панели поверх размытия.</sub>
 <br/><br/>
 
-**Установка — одна команда из папки проекта:**
+**Установка в одну строку — вставь в PowerShell:**
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\install.ps1
+iwr -useb https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.ps1 | iex
 ```
 
 <sub>
@@ -89,18 +89,30 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 ## ⚡ Быстрый старт
 
-Скачай репозиторий (**Code → Download ZIP**) и распакуй в любую папку.
+**Вариант A — одна строка (рекомендуется).**
 
-**Windows** — открой PowerShell в этой папке:
+Windows — в PowerShell:
 
 ```powershell
+iwr -useb https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.ps1 | iex
+```
+
+macOS — в Терминале:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/am1dreaming/Flying-Island-dark-for-VS-code/main/install-web.sh | bash
+```
+
+**Вариант B — из скачанной папки.** Скачай репозиторий (**Code → Download ZIP**), распакуй и запусти из этой папки:
+
+```powershell
+# Windows (PowerShell)
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-**macOS** — в Терминале из этой папки:
-
 ```bash
-./install.sh
+# macOS (Терминал)
+bash install.sh
 ```
 
 Установщик делает всё сам:
@@ -271,6 +283,7 @@ code --uninstall-extension yaroslav.flying-island
 ```
 flying-island/
 ├── install.ps1 · install.sh          установка (Windows / macOS)
+├── install-web.ps1 · install-web.sh  установка в одну строку: скачивает репозиторий и запускает установщик
 ├── extension.js                      патчер: острова + стекло, миграция со старой версии
 ├── package.json                      манифест расширения и настройки
 ├── css/
