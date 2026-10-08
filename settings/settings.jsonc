@@ -1,12 +1,12 @@
 // Merged into every VS Code profile's settings.json by install.sh (macOS)
 // or install.ps1 (Windows). Values mirror the JetBrains IDE (New UI) defaults.
 {
-  // --- theme
+  // theme
   "workbench.colorTheme": "Flying Island Dark",
   "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",
   "workbench.productIconTheme": "Default",
 
-  // --- editor font: CLion default = JetBrains Mono 13, line spacing 1.2
+  // editor font: CLion default = JetBrains Mono 13, line spacing 1.2
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontSize": 13,
   "editor.lineHeight": 22,
@@ -14,7 +14,7 @@
   "editor.fontWeight": "normal",
   "editor.letterSpacing": 0,
 
-  // --- editor look
+  // editor look
   "editor.renderLineHighlight": "all",
   "editor.cursorWidth": 2,
   "editor.cursorBlinking": "blink",
@@ -41,18 +41,18 @@
   "editor.renderWhitespace": "none",
   "editor.unicodeHighlight.ambiguousCharacters": false,
 
-  // --- inlay hints (filename: / mode: / size:) like CLion
+  // inlay hints (filename: / mode: / size:) like CLion
   "editor.inlayHints.enabled": "on",
   "editor.inlayHints.fontFamily": "Inter",
   "editor.inlayHints.fontSize": 11,
   "editor.inlayHints.padding": true,
 
-  // --- glass: native blur behind title bar / stripe / status bar / Project
+  // glass: native blur behind title bar / stripe / status bar / Project
   //     (macOS vibrancy; on Windows 11 the extension maps it to acrylic)
   "flyingIsland.vibrancy": "under-window",
   "flyingIsland.vibrancyOpacity": 0.4,
 
-  // --- window chrome
+  // window chrome
   // VS Code 1.14x enables an experimental "modern UI" by default; the classic
   // layout + css/islands.css matches CLion exactly (separate tool window stripe).
   "workbench.experimental.modernUI": false,
@@ -70,12 +70,12 @@
   "workbench.activityBar.location": "default",
   "workbench.sideBar.location": "left",
 
-  // --- terminal / run console
+  // terminal / run console
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "terminal.integrated.fontSize": 13,
   "terminal.integrated.lineHeight": 1.2,
 
-  // --- C/C++: clangd gives the same semantic colors as CLion Nova
+  // C/C++: clangd gives the same semantic colors as CLion Nova
   //     (stdout / strcpy / NULL as macros, declarations vs calls, inlay hints)
   // clangd comes from PATH (macOS: Xcode CLT); on Windows the clangd
   // extension offers to download it on first use.
