@@ -1,0 +1,4 @@
+dist/
+*.vsix
+.DS_Store
+Thumbs.db
