@@ -1,0 +1,7 @@
+tools/**
+fonts/**
+settings/**
+docs/**
+images/**
+install*.ps1
+install*.sh
