@@ -1,0 +1,119 @@
+{
+  "name": "flying-island",
+  "displayName": "Flying Island",
+  "description": "Floating rounded islands with native window glass (macOS vibrancy, Windows 11 acrylic/mica) and a high-contrast dark theme built from the open-source IntelliJ Platform palette.",
+  "version": "1.4.0",
+  "publisher": "yaroslav",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Flying Island Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/flying-island-dark-color-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "flyingIsland.apply",
+        "title": "Flying Island: Apply (islands + vibrancy)"
+      },
+      {
+        "command": "flyingIsland.remove",
+        "title": "Flying Island: Remove All Patches"
+      }
+    ],
+    "configuration": {
+      "title": "Flying Island",
+      "properties": {
+        "flyingIsland.autoApply": {
+          "type": "boolean",
+          "default": true,
+          "description": "Inject the island geometry CSS into VS Code on startup (re-applies after VS Code updates)."
+        },
+        "flyingIsland.vibrancy": {
+          "type": "string",
+          "default": "off",
+          "enum": [
+            "off",
+            "under-window",
+            "sidebar",
+            "hud",
+            "acrylic",
+            "mica",
+            "tabbed"
+          ],
+          "enumDescriptions": [
+            "Solid window (no blur)",
+            "macOS: blurred desktop behind the window (Windows: acrylic)",
+            "macOS: Finder-sidebar material (Windows: acrylic)",
+            "macOS: dark HUD material (Windows: acrylic)",
+            "Windows 11: live acrylic blur (macOS: under-window)",
+            "Windows 11: Mica, tinted wallpaper without live blur (macOS: under-window)",
+            "Windows 11: tabbed Mica variant (macOS: under-window)"
+          ],
+          "description": "Native translucent window material behind the title bar, tool window stripe, status bar and Project island. Requires quitting and reopening VS Code."
+        },
+        "flyingIsland.vibrancyOpacity": {
+          "type": "number",
+          "default": 0.4,
+          "minimum": 0.3,
+          "maximum": 1,
+          "description": "How solid the translucent chrome is over the blur (0.3 = very glassy, 1 = opaque)."
+        },
+        "flyingIsland.gap": {
+          "type": "number",
+          "default": 4,
+          "minimum": 0,
+          "maximum": 16,
+          "markdownDescription": "Gap between neighbouring islands (editor groups, Project, bottom panel, chat). In pixels; applied after **Reload Window**."
+        },
+        "flyingIsland.radius": {
+          "type": "number",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 20,
+          "markdownDescription": "Corner radius of the islands. In pixels; applied after **Reload Window**."
+        },
+        "flyingIsland.margin.top": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 16,
+          "markdownDescription": "Space between the title bar and the top of the islands. In pixels; applied after **Reload Window**."
+        },
+        "flyingIsland.margin.right": {
+          "type": "number",
+          "default": 7,
+          "minimum": 0,
+          "maximum": 16,
+          "markdownDescription": "Space between the right window edge and the rightmost island. In pixels; applied after **Reload Window**."
+        },
+        "flyingIsland.margin.bottom": {
+          "type": "number",
+          "default": 4,
+          "minimum": 0,
+          "maximum": 6,
+          "markdownDescription": "Space between the bottom of the islands and the status bar (up to 6: VS Code lays out the panels itself, so a larger cut would hide their last rows). In pixels; applied after **Reload Window**."
+        },
+        "flyingIsland.margin.left": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 16,
+          "markdownDescription": "Space between the tool window stripe (activity bar) and the leftmost island. In pixels; applied after **Reload Window**."
+        }
+      }
+    }
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ]
+}

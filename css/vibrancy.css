@@ -1,0 +1,53 @@
+/*
+ * Flying Island — translucent window chrome over native blur.
+ * Appended after islands.css only when "flyingIsland.vibrancy" is not "off".
+ * The OS blur itself (macOS vibrancy / Windows acrylic, mica) is enabled in
+ * VS Code's main process by extension.js; this file just lets it show through:
+ * window gaps, title bar, tool window stripe and status bar become
+ * translucent; all islands (Project, editors, bottom panel) stay solid.
+ *
+ * --isl-vib-alpha is injected by extension.js from "flyingIsland.vibrancyOpacity".
+ */
+
+html,
+body {
+  background: transparent !important;
+}
+
+/* window background = the gaps between islands */
+.monaco-workbench {
+  background-color: rgba(38, 40, 43, var(--isl-vib-alpha)) !important; /* #26282B */
+}
+
+/* The editor part sits on top of the workbench: tinting it again (VS Code
+   paints editor.background on it) leaves a grey square plate sticking out from
+   under the rounded editor islands. Keep it clear; islands.css paints each
+   editor group itself. */
+.monaco-workbench:not(.floating-panels) .part.editor,
+.monaco-workbench:not(.floating-panels) .part.editor > .content {
+  background-color: transparent !important;
+}
+
+/* Modern UI (floating-panels) paints an opaque shell colour on the grid
+   behind its cards, which would hide the blur entirely. */
+.monaco-workbench.floating-panels > .monaco-grid-view {
+  background-color: transparent !important;
+}
+
+/* chrome sits directly on the window background */
+.monaco-workbench .part.titlebar,
+.monaco-workbench .part.titlebar > .titlebar-container,
+.monaco-workbench .part.activitybar,
+.monaco-workbench .part.statusbar {
+  background-color: transparent !important;
+}
+
+/* Project / secondary side bar islands stay solid like the editors:
+   the theme already paints them #191A1C, nothing to override here. */
+
+/* keep text crisp on top of blur */
+.monaco-workbench .part.activitybar,
+.monaco-workbench .part.statusbar,
+.monaco-workbench .part.titlebar {
+  -webkit-font-smoothing: antialiased;
+}

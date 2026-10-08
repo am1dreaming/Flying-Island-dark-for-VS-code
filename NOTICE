@@ -1,0 +1,51 @@
+Flying Island
+Copyright (c) 2026 Yaroslav. Licensed under the MIT License (see LICENSE).
+
+This project includes or is derived from the following third-party material.
+
+--------------------------------------------------------------------------
+IntelliJ Platform theme files (color palette and island geometry)
+--------------------------------------------------------------------------
+The color values in themes/flying-island-dark-color-theme.json and the island
+geometry defaults in css/islands.css were derived from these files of
+JetBrains/intellij-community (branch 252), platform/platform-resources/src/:
+
+  themes/islands/ManyIslandsDark.theme.json
+  themes/expUI/expUI_dark.theme.json
+  themes/expUI/expUI_darculaContrastScheme.xml
+  DefaultColorSchemesManager.xml
+
+Copyright 2000-2025 JetBrains s.r.o. and contributors.
+Licensed under the Apache License, Version 2.0 (licenses/Apache-2.0.txt).
+Source: https://github.com/JetBrains/intellij-community
+Changes: color values were extracted and mapped to VS Code theme keys; the
+upstream files themselves are not redistributed.
+
+--------------------------------------------------------------------------
+Fonts (fonts/)
+--------------------------------------------------------------------------
+JetBrains Mono - Copyright 2020 The JetBrains Mono Project Authors
+  (https://github.com/JetBrains/JetBrainsMono)
+  SIL Open Font License 1.1, see fonts/JetBrainsMono-OFL.txt
+
+Inter - Copyright (c) 2016 The Inter Project Authors
+  (https://github.com/rsms/inter)
+  SIL Open Font License 1.1, see fonts/Inter-OFL.txt
+
+The fonts are unmodified and are not sold on their own.
+
+--------------------------------------------------------------------------
+Not bundled
+--------------------------------------------------------------------------
+The installers fetch these from the Visual Studio Marketplace; they are not
+part of this project and come under their own licenses:
+  llvm-vs-code-extensions.vscode-clangd (clangd, Apache-2.0 with LLVM exception)
+  chadalen.vscode-jetbrains-icon-theme (optional icon theme)
+
+--------------------------------------------------------------------------
+Trademarks
+--------------------------------------------------------------------------
+JetBrains, IntelliJ, CLion and JetBrains Mono are trademarks of JetBrains s.r.o.
+Visual Studio Code is a trademark of Microsoft Corporation. They are named
+here only to describe compatibility and origin. Flying Island is an
+independent project, not affiliated with or endorsed by JetBrains or Microsoft.

@@ -1,0 +1,280 @@
+/*
+ * Flying Island — window geometry for VS Code.
+ * Inlined into VS Code's workbench.html by extension.js.
+ *
+ * Default numbers come from the IntelliJ Platform ManyIslandsDark.theme.json:
+ *   Island.borderWidth = 4  -> 4px gap between islands
+ *   Island.arc         = 20 -> 10px corner radius
+ *
+ * VS Code lays parts out with absolute pixel sizes, so islands are cut out
+ * with clip-path instead of margins: layout math stays intact and the window
+ * background shows through the clipped edges as the gap.
+ *
+ * Geometry defaults below; extension.js overrides them from the
+ * flyingIsland.gap / .radius / .margin.* settings.
+ */
+
+:root {
+  --isl-gap: 4px;      /* between neighbouring islands */
+  --isl-half: 2px;     /* half of the gap, cut from each side of a shared edge */
+  --isl-radius: 10px;
+  --isl-top: 0px;      /* below the title bar */
+  --isl-right: 7px;    /* right window edge: a touch wider than the gaps */
+  --isl-bottom: 4px;   /* above the status bar */
+  --isl-left: 0px;     /* next to the tool window stripe (activity bar) */
+  --isl-window: #26282B;
+  --isl-tab-bg: #25324D;
+  --isl-tab-border: #35538F;
+}
+
+/* ------------------------------------------------------------- UI font */
+/* CLion New UI uses Inter 13 for all chrome. */
+.monaco-workbench,
+.monaco-workbench .monaco-list,
+.monaco-workbench .quick-input-widget {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+/* ---------------------------------------------------------- window base */
+.monaco-workbench,
+.monaco-workbench .part.editor > .content {
+  background-color: var(--isl-window) !important;
+}
+
+/* ------------------------------------------------------------ islands */
+/* Each island sets how much is cut from each of its sides (--in-t/r/b/l);
+   one clip-path rule below cuts it out, and the content near the edges
+   (tabs, titles, tree rows) is shifted in by the same amount further down,
+   so wider gaps and margins don't clip it. VS Code still sizes the parts in
+   its own JS, so this only moves things inside each part. */
+:root { --in-t: 0px; --in-r: 0px; --in-b: 0px; --in-l: 0px; }
+
+/* Project tool window (left). Activity bar on its left already is a gap. */
+.monaco-workbench:not(.floating-panels) .part.sidebar {
+  --in-t: var(--isl-top); --in-r: var(--isl-half); --in-b: var(--isl-bottom); --in-l: var(--isl-left);
+}
+.monaco-workbench:not(.floating-panels) .part.sidebar.right {
+  --in-r: var(--isl-right); --in-l: var(--isl-half);
+}
+
+/* Each editor group is its own island (split editors get a gap too). */
+.monaco-workbench:not(.floating-panels) .part.editor > .content .editor-group-container {
+  --in-t: var(--isl-top); --in-r: var(--isl-half); --in-b: var(--isl-half); --in-l: var(--isl-half);
+}
+.monaco-workbench:not(.floating-panels).nopanel .part.editor > .content .editor-group-container {
+  --in-b: var(--isl-bottom);
+}
+.monaco-workbench:not(.floating-panels) .part.editor > .content .editor-group-container:last-child,
+.monaco-workbench:not(.floating-panels) .part.editor > .content .split-view-view:last-child .editor-group-container {
+  --in-r: var(--isl-right);
+}
+
+/* Run / Terminal / Problems tool window (bottom). */
+.monaco-workbench:not(.floating-panels) .part.panel.bottom {
+  --in-t: var(--isl-half); --in-r: var(--isl-right); --in-b: var(--isl-bottom); --in-l: var(--isl-half);
+}
+.monaco-workbench:not(.floating-panels).nosidebar .part.panel.bottom {
+  --in-l: var(--isl-left);
+}
+.monaco-workbench:not(.floating-panels) .part.panel.left {
+  --in-t: var(--isl-top); --in-r: var(--isl-half); --in-b: var(--isl-bottom); --in-l: var(--isl-half);
+}
+.monaco-workbench:not(.floating-panels) .part.panel.right {
+  --in-t: var(--isl-top); --in-r: var(--isl-right); --in-b: var(--isl-bottom); --in-l: var(--isl-half);
+}
+
+/* Secondary side bar (Copilot/Claude chat etc.) — right island. */
+.monaco-workbench:not(.floating-panels) .part.auxiliarybar {
+  --in-t: var(--isl-top); --in-r: var(--isl-right); --in-b: var(--isl-bottom); --in-l: var(--isl-half);
+}
+
+.monaco-workbench:not(.floating-panels) .part.sidebar,
+.monaco-workbench:not(.floating-panels) .part.auxiliarybar,
+.monaco-workbench:not(.floating-panels) .part.panel,
+.monaco-workbench:not(.floating-panels) .part.editor > .content .editor-group-container {
+  clip-path: inset(var(--in-t) var(--in-r) var(--in-b) var(--in-l) round var(--isl-radius));
+}
+
+/* The island paints itself: VS Code puts editor.background on the editor part
+   (a square plate under all groups) and leaves empty groups unpainted
+   (editorGroup.emptyBackground is unset). The part is the gap colour above;
+   the clipped group carries the editor colour, so no square edge shows. */
+.monaco-workbench .part.editor > .content .editor-group-container {
+  background-color: var(--vscode-editor-background) !important;
+}
+
+/* VS Code 1.14x "modern UI" (floating-panels) has native cards: tune them to
+   the island geometry instead of clipping (no outlines), and the tool window
+   stripe stays a separate, frameless column. */
+.monaco-workbench.floating-panels {
+  --vscode-cornerRadius-large: var(--isl-radius);
+  --modern-ui-floating-card-margin: var(--isl-gap);
+  --modern-ui-floating-card-outer-margin: var(--isl-right);
+  --modern-ui-floating-card-border-color: transparent;
+  --modern-ui-editor-border-color: transparent;
+}
+.monaco-workbench.floating-panels .part.activitybar {
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: var(--isl-window) !important;
+  margin-right: 0 !important;
+}
+.monaco-workbench.floating-panels:not(.noactivitybar) .part.sidebar.left {
+  border-radius: var(--isl-radius) !important;
+  margin-left: 0 !important;
+  border-color: transparent !important;
+}
+
+/* Sashes between islands are invisible until hovered, like in CLion. */
+.monaco-workbench .monaco-sash.vertical::before,
+.monaco-workbench .monaco-sash.horizontal::before {
+  background: transparent;
+}
+
+/* ------------------------------------------------------- editor tabs */
+/* Inactive tabs sit flat on the tab strip; the active one is a rounded pill
+   with a Blue3 outline (IslandsTabPainter: underlinedTabBackground=Blue1,
+   underlinedBorderColor=Blue3). */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab {
+  border-radius: 6px;
+  margin: calc(4px + var(--in-t)) 1px 4px;
+  height: calc(100% - 8px - var(--in-t)) !important;
+  padding-left: 8px;
+  padding-right: 4px;
+  align-items: center;
+}
+/* The pill is shorter than the tab strip (8px + the island's top cut), but
+   VS Code sizes the label's line-height to the full strip height — re-center
+   icon + text in the pill. */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab .tab-label,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab .monaco-icon-label,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab .monaco-icon-label::before,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab .tab-actions {
+  line-height: calc(var(--editor-group-tab-height, 35px) - 8px - var(--in-t)) !important;
+  height: 100%;
+}
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container {
+  padding-left: calc(2px + var(--in-l));
+}
+/* keep the editor actions (split, "...") clear of a wide right cut */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
+  padding-right: max(0px, calc(var(--in-r) - 7px));
+}
+.monaco-workbench .part.editor > .content .editor-group-container.active > .title .tabs-container > .tab.active {
+  box-shadow: inset 0 0 0 1px var(--isl-tab-border);
+}
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab:not(.active):hover {
+  box-shadow: none;
+}
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab > .tab-border-top-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab > .tab-border-bottom-container {
+  display: none !important;
+}
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab .tab-label .label-name {
+  font-size: 13px;
+}
+
+/* ------------------------------------------------ tool window headers */
+.monaco-workbench .part.sidebar > .title,
+.monaco-workbench .part.panel > .title,
+.monaco-workbench .part.auxiliarybar > .title {
+  box-sizing: border-box;
+  padding-left: calc(8px + var(--in-l));
+  padding-right: max(0px, calc(var(--in-r) - 2px));
+}
+/* the 35px title has room for ~6px of top cut; beyond that, push it down */
+.monaco-workbench .part.sidebar > .title,
+.monaco-workbench .part.auxiliarybar > .title {
+  padding-top: max(0px, calc(var(--in-t) - 6px));
+}
+.monaco-workbench .part.sidebar > .title > .title-label h2,
+.monaco-workbench .part.auxiliarybar > .title > .title-label h2 {
+  text-transform: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.monaco-workbench .part.panel > .title .composite-bar .action-item .action-label {
+  text-transform: none;
+  font-size: 13px;
+}
+.monaco-workbench .pane-header {
+  text-transform: none;
+  box-sizing: border-box;
+  padding-left: var(--in-l);
+  padding-right: max(0px, calc(var(--in-r) - 2px));
+}
+.monaco-workbench .pane-header h3.title {
+  text-transform: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+/* ------------------------------------------------------ project tree */
+/* Rounded row selection with side insets (List.border = 4,0,4,0). */
+.monaco-workbench .part.sidebar .monaco-list .monaco-list-row,
+.monaco-workbench .part.auxiliarybar .monaco-list .monaco-list-row,
+.monaco-workbench .part.panel .monaco-list .monaco-list-row {
+  border-radius: 4px;
+  left: calc(6px + var(--in-l));
+  width: calc(100% - 12px - var(--in-l) - max(0px, calc(var(--in-r) - 2px))) !important;
+}
+
+/* -------------------------------------------------- activity bar (stripe) */
+/* VS Code sizes and centers the 48x48 items itself — never touch their box.
+   The CLion stripe button (36x36, radius 6) is a pseudo-layer under the icon. */
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item {
+  isolation: isolate;
+}
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 6px;
+  z-index: -1;
+  pointer-events: none;
+  background-color: transparent;
+}
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item.checked::after {
+  background-color: #3574F0;
+}
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item:not(.checked):hover::after {
+  background-color: #FFFFFF16;
+}
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item.checked .action-label.codicon,
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item.checked .action-label.codicon::before {
+  color: #FFFFFF !important;
+}
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item.checked .action-label.uri-icon {
+  background-color: #FFFFFF !important;
+}
+.monaco-workbench .activitybar > .content .monaco-action-bar .action-item .active-item-indicator {
+  display: none !important;
+}
+
+/* --------------------------------------------------------- popups */
+.monaco-workbench .quick-input-widget,
+.monaco-editor .suggest-widget,
+.monaco-editor .monaco-hover,
+.monaco-workbench .monaco-menu-container,
+.monaco-workbench .context-view .monaco-menu,
+.monaco-workbench .notification-toast,
+.monaco-editor .find-widget {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+.monaco-workbench .quick-input-list .monaco-list-row,
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row,
+.monaco-workbench .monaco-menu .action-item .action-menu-item {
+  border-radius: 4px;
+}
+
+/* ---------------------------------------------------- command center */
+.monaco-workbench .part.titlebar .command-center .command-center-center {
+  border-radius: 6px !important;
+}
+
+/* -------------------------------------------------------- status bar */
+.monaco-workbench .part.statusbar > .items-container > .statusbar-item > :first-child {
+  border-radius: 4px;
+  margin: 0 1px;
+}
