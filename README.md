@@ -317,7 +317,7 @@ Project code is **MIT** (`LICENSE`). Theme colors are derived from [IntelliJ Com
 
 <div align="center">
 
-**Flying Island** — made with 🩵 by **Yaroslav**
+**Flying Island** — made with 🩵 by **am1dreaming**
 
 <sub>MIT License · not affiliated with or endorsed by JetBrains or Microsoft</sub>
 
